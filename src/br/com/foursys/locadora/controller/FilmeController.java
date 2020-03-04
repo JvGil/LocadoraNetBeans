@@ -1,8 +1,6 @@
 package br.com.foursys.locadora.controller;
 
 import br.com.foursys.locadora.dao.FilmeDAO;
-import br.com.foursys.locadora.model.Cidade;
-import br.com.foursys.locadora.model.Estado;
 import br.com.foursys.locadora.model.Filme;
 import br.com.foursys.locadora.util.ConnectionFactory;
 import br.com.foursys.locadora.view.FilmeView;
@@ -15,68 +13,23 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author dmunhoz
+ * Classe responsável por controlar o Filme
+ * 
+ * @author jgil
+ * @since 04/03/2020
+ * @version 0.1
  */
 public class FilmeController {
 
     private FilmeView viewFilme;
     private Filme filme = new Filme();
     private List<Filme> listaFilmes;
-    private List<Cidade> cidades;
-    private List<Estado> estados;
     private boolean alterar;
 
     public FilmeController(FilmeView viewFilme) {
         this.viewFilme = viewFilme;
     }
     
-//    public void alterarFilme() {
-//        DefaultTableModel modelo = (DefaultTableModel) this.viewCliente.getTabelaCliente().getModel();
-//        if (this.viewCliente.getTabelaCliente().getSelectedRow() < 0) {
-//            JOptionPane.showMessageDialog(null, "É necessário selecionar um cliente");
-//        } else {
-//            cliente = listaClientes.get(this.viewCliente.getTabelaCliente().getSelectedRow());
-//            this.viewCliente.getJtfCpf().setText(cliente.getCpf());
-//            this.viewCliente.getJtfRg().setText(cliente.getRg());
-//            this.viewCliente.getCbSexo().setSelectedItem(cliente.getSexo() + "");
-//            this.viewCliente.getJtfIdade().setText(cliente.getIdade() + "");
-//            this.viewCliente.getJtfNome().setText(cliente.getNome());
-//            this.viewCliente.getJtfLogradouro().setText(cliente.getLogradouro());
-//            this.viewCliente.getJtfNumeroLogradouro().setText(cliente.getNumLogradouro()+ "");
-//            this.viewCliente.getJtfBairro().setText(cliente.getBairro());
-//            this.viewCliente.getCbCidade().setSelectedItem(cliente.getCidade().toString());
-//            this.viewCliente.getCbEstado().setSelectedItem(cliente.getEstado().getNome());
-//            this.viewCliente.getJtfTelefone().setText(cliente.getTelefone());
-//            this.viewCliente.getJtfDataNascimento().setText(cliente.getDataNasc());
-//            this.alterar = true;
-//            acaoBotaoAlterar();
-//        }
-//    }
-
-    public void excluirFilme(){
-        DefaultTableModel modelo = (DefaultTableModel) this.viewFilme.getTabelaFilme().getModel();
-        if (this.viewFilme.getTabelaFilme().getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(null, "É necessário selecionar um filme");
-        } else {
-            filme = listaFilmes.get(this.viewFilme.getTabelaFilme().getSelectedRow());
-            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?","Atenção",
-                                                      JOptionPane.YES_OPTION,
-                                                      JOptionPane.CANCEL_OPTION);
-            if (opcao == JOptionPane.YES_OPTION) {
-                 Connection bd = ConnectionFactory.getConnection();
-                FilmeDAO dao = new FilmeDAO(bd);
-                try {
-                    dao.excluir(filme);
-                    JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
-                    listarFilmes();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente!");
-                    Logger.getLogger(FilmeController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
     public void salvarFilme() {
         if (this.alterar == false) {
             //inserir um registro
@@ -86,18 +39,12 @@ public class FilmeController {
                 filme.setNome(this.viewFilme.getJtfNome().getText());
                 filme.setValor(Double.parseDouble(this.viewFilme.getJtfValor().getText()));
                 filme.setValorPromocao(Double.parseDouble(this.viewFilme.getJtfValorPromocao().getText()));
+                filme.setDisponivel((this.viewFilme.getJcbDisponivel().getSelectedItem().toString() == "SIM")?true:false);
+                filme.setPromocao((this.viewFilme.getJcbPromocao().getSelectedItem().toString() == "SIM")?true:false);
                 
-                if (this.viewFilme.getCbDisponivel().getSelectedIndex() == 1) {
-                    filme.setDisponivel(true);
-                } else {
-                    filme.setDisponivel(false);
-                }
-                
-                if (this.viewFilme.getCbPromocao().getSelectedIndex() == 1) {
-                    filme.setPromocao(true);
-                } else {
-                    filme.setPromocao(false);
-                }
+                // Utilizo para pegar o campo de gênero do filme
+                String genero = verificaGenero();
+                filme.setGenero(genero);
                 
                 Connection bd = ConnectionFactory.getConnection();
                 FilmeDAO dao = new FilmeDAO(bd);
@@ -117,25 +64,20 @@ public class FilmeController {
             if (validarSalvar()) {
                 filme.setValor(Double.parseDouble(this.viewFilme.getJtfValor().getText()));
                 filme.setValorPromocao(Double.parseDouble(this.viewFilme.getJtfValorPromocao().getText()));
+                filme.setDisponivel((this.viewFilme.getJcbDisponivel().getSelectedItem().toString() == "SIM")?true:false);
+                filme.setPromocao((this.viewFilme.getJcbPromocao().getSelectedItem().toString() == "SIM")?true:false);
                 
-                if (this.viewFilme.getCbDisponivel().getSelectedIndex() == 1) {
-                    filme.setDisponivel(true);
-                } else {
-                    filme.setDisponivel(false);
-                }
+                // Utilizo para pegar o campo de gênero do filme
+                String genero = verificaGenero();
+                filme.setGenero(genero);
                 
-                if (this.viewFilme.getCbPromocao().getSelectedIndex() == 1) {
-                    filme.setPromocao(true);
-                } else {
-                    filme.setPromocao(false);
-                }
                 Connection bd = ConnectionFactory.getConnection();
                 FilmeDAO dao = new FilmeDAO(bd);
                 try {
                     dao.alterar(filme);
-                    JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Filme alterado com sucesso!");
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Erro ao alterado o cliente.");
+                    JOptionPane.showMessageDialog(null, "Erro ao alterar o filme.");
                     Logger.getLogger(FilmeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 limparCampos();
@@ -144,43 +86,84 @@ public class FilmeController {
             }
         }
     }
-
-    public boolean validarSalvar() {
-        if (this.viewFilme.getJtfCodigo().getText().equals("")) {
+     
+     public boolean validarSalvar() {
+        if (this.viewFilme.getJtfCodigo().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o código, campo obrigatório.");
             return false;
         }
-        
-        if (this.viewFilme.getJtfNome().getText().equals("")) {
+
+        if (this.viewFilme.getJtfNome().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome, campo obrigatório.");
             return false;
         }
-        
-        if (this.viewFilme.getJtfValor().getText().equals("")) {
+
+        if (this.viewFilme.getJtfValor().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o valor, campo obrigatório.");
             return false;
         }
-        
-        if (this.viewFilme.getJtfValorPromocao().getText().equals("")) {
+
+        if (this.viewFilme.getJtfValorPromocao().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o valor quando estiver em pormoção, campo obrigatório (caso o filme não esteja em promoção, coloque 0 reais no valor).");
             return false;
         }
 
-        if (this.viewFilme.getCbDisponivel().getSelectedIndex() == 0) {
+        if (this.viewFilme.getJcbDisponivel().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe se filme está disponível, campo obrigatório.");
             return false;
         }
-        
-        if (this.viewFilme.getCbPromocao().getSelectedIndex() == 0) {
+
+        if (this.viewFilme.getJcbPromocao().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe se filme está em promoção, campo obrigatório.");
             return false;
         }
-        
-        if (!this.viewFilme.getJcbAcao().isSelected() && !this.viewFilme.getJcbFiccao().isSelected() && !this.viewFilme.getJcbTerror().isSelected()&& !this.viewFilme.getJcbComedia().isSelected() && !this.viewFilme.getJcbInfantil().isSelected() && !this.viewFilme.getJcbAnimacao().isSelected() && !this.viewFilme.getJcbAventura().isSelected() && !this.viewFilme.getJcbOutro().isSelected()) {
+
+        if (!this.viewFilme.getJchAcao().isSelected() && !this.viewFilme.getJchFiccao().isSelected() && !this.viewFilme.getJchTerror().isSelected() && !this.viewFilme.getJchComedia().isSelected() && !this.viewFilme.getJchInfantil().isSelected() && !this.viewFilme.getJchAnimacao().isSelected() && !this.viewFilme.getJchAventura().isSelected() && !this.viewFilme.getJchOutro().isSelected()) {
             JOptionPane.showMessageDialog(null, "Informe pelo menos um gênero, campo obrigatório.");
             return false;
-        }            
+        }
         return true;
+    }
+     
+     public void alterarFilme() {
+          DefaultTableModel modelo = (DefaultTableModel) this.viewFilme.getTabelaFilme().getModel();
+        if (this.viewFilme.getTabelaFilme().getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null, "É necessário selecionar um filme");
+        } else {
+            filme = listaFilmes.get(this.viewFilme.getTabelaFilme().getSelectedRow());
+            this.viewFilme.getJtfCodigo().setText(filme.getCodigo() + "");
+            this.viewFilme.getJtfNome().setText(filme.getNome());
+            this.viewFilme.getJtfValor().setText(filme.getValor() + "");
+            this.viewFilme.getJtfValorPromocao().setText(filme.getValorPromocao() + "");
+            this.viewFilme.getJcbDisponivel().setSelectedItem((filme.isDisponivel())?"SIM":"NÃO");
+            this.viewFilme.getJcbPromocao().setSelectedItem((filme.isPromocao())?"SIM":"NÃO");
+            carregarCheckBoxGenero();
+            this.alterar = true;
+            acaoBotaoAlterar();
+        }
+     }
+
+    public void excluirFilme() {
+        DefaultTableModel modelo = (DefaultTableModel) this.viewFilme.getTabelaFilme().getModel();
+        if (this.viewFilme.getTabelaFilme().getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null, "É necessário selecionar um filme");
+        } else {
+            filme = listaFilmes.get(this.viewFilme.getTabelaFilme().getSelectedRow());
+            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?", "Atenção", 
+                    JOptionPane.YES_OPTION, JOptionPane.CANCEL_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+                Connection bd = ConnectionFactory.getConnection();
+                FilmeDAO dao = new FilmeDAO(bd);
+                try {
+                    dao.excluir(filme);
+                    JOptionPane.showMessageDialog(null, "Filme excluido com sucesso!");
+                    listarFilmes();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente!");
+                    Logger.getLogger(FilmeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     public void listarFilmes() {
@@ -198,7 +181,10 @@ public class FilmeController {
         DefaultTableModel modelo = (DefaultTableModel) this.viewFilme.getTabelaFilme().getModel();
         modelo.setRowCount(0);
         for (Filme listaFilme : listaFilmes) {
-            modelo.addRow(new String[]{listaFilme.getNome(), listaFilme.getGenero(), listaFilme.getValor()+"",(listaFilme.isDisponivel())?"Sim":"Não", (listaFilme.isPromocao())?"Sim":"Não", listaFilme.getValorPromocao()+""});
+            String genero = carregarGeneroTabela(listaFilme.getGenero());
+            
+            modelo.addRow(new String[]{listaFilme.getNome(), genero, "R$" + listaFilme.getValor(),
+                (listaFilme.isDisponivel()) ? "SIM" : "NÃO", (listaFilme.isPromocao()) ? "SIM" : "NÃO", "R$" + listaFilme.getValorPromocao()});
         }
     }
 
@@ -219,52 +205,27 @@ public class FilmeController {
         this.viewFilme.getJtfNome().setEditable(false);
         this.viewFilme.getJtfValor().setEditable(false);
         this.viewFilme.getJtfValorPromocao().setEditable(false);
-        this.viewFilme.getCbDisponivel().setEnabled(false);
-        this.viewFilme.getCbPromocao().setEnabled(false);
-        this.viewFilme.getJcbAcao().setEnabled(false);
-        this.viewFilme.getJcbFiccao().setEnabled(false);
-        this.viewFilme.getJcbTerror().setEnabled(false);
-        this.viewFilme.getJcbComedia().setEnabled(false);
-        this.viewFilme.getJcbInfantil().setEnabled(false);
-        this.viewFilme.getJcbAnimacao().setEnabled(false);
-        this.viewFilme.getJcbAventura().setEnabled(false);
-        this.viewFilme.getJcbOutro().setEnabled(false);
+        this.viewFilme.getJcbDisponivel().setEnabled(false);
+        this.viewFilme.getJcbPromocao().setEnabled(false);
+        this.viewFilme.getJchAcao().setEnabled(false);
+        this.viewFilme.getJchFiccao().setEnabled(false);
+        this.viewFilme.getJchTerror().setEnabled(false);
+        this.viewFilme.getJchComedia().setEnabled(false);
+        this.viewFilme.getJchInfantil().setEnabled(false);
+        this.viewFilme.getJchAnimacao().setEnabled(false);
+        this.viewFilme.getJchAventura().setEnabled(false);
+        this.viewFilme.getJchOutro().setEnabled(false);
     }
 
-    public void liberarCampos() {
-        this.viewFilme.getJtfPesquisarNome().setEditable(false);
-        this.viewFilme.getJtfCodigo().grabFocus();
-        this.viewFilme.getJtfCodigo().setEditable(true);
-        this.viewFilme.getJtfNome().setEditable(true);
-        this.viewFilme.getJtfValor().setEditable(true);
-        this.viewFilme.getJtfValorPromocao().setEditable(true);
-        this.viewFilme.getCbDisponivel().setEnabled(true);
-        this.viewFilme.getCbPromocao().setEnabled(true);
-        this.viewFilme.getJcbAcao().setEnabled(true);
-        this.viewFilme.getJcbFiccao().setEnabled(true);
-        this.viewFilme.getJcbTerror().setEnabled(true);
-        this.viewFilme.getJcbComedia().setEnabled(true);
-        this.viewFilme.getJcbInfantil().setEnabled(true);
-        this.viewFilme.getJcbAnimacao().setEnabled(true);
-        this.viewFilme.getJcbAventura().setEnabled(true);
-        this.viewFilme.getJcbOutro().setEnabled(true);
-    }
-
-    public void limparCampos() {
-        this.viewFilme.getJtfCodigo().setText(null);
-        this.viewFilme.getJtfNome().setText(null);
-        this.viewFilme.getJtfValor().setText(null);
-        this.viewFilme.getJtfValorPromocao().setText(null);
-        this.viewFilme.getCbDisponivel().setSelectedIndex(0);
-        this.viewFilme.getCbPromocao().setSelectedIndex(0);
-        this.viewFilme.getJcbAcao().setSelected(false);
-        this.viewFilme.getJcbFiccao().setSelected(false);
-        this.viewFilme.getJcbTerror().setSelected(false);
-        this.viewFilme.getJcbComedia().setSelected(false);
-        this.viewFilme.getJcbInfantil().setSelected(false);
-        this.viewFilme.getJcbAnimacao().setSelected(false);
-        this.viewFilme.getJcbAventura().setSelected(false);
-        this.viewFilme.getJcbOutro().setSelected(false);
+    public void acaoBotaoNovo() {
+        this.viewFilme.getJbtNovo().setEnabled(false);
+        this.viewFilme.getJbtAlterar().setEnabled(false);
+        this.viewFilme.getJbtExcluir().setEnabled(false);
+        this.viewFilme.getJbtSair().setEnabled(false);
+        this.viewFilme.getJbtSalvar().setEnabled(true);
+        this.viewFilme.getJbtCancelar().setEnabled(true);
+        liberarCampos();
+        this.alterar = false;
     }
 
     public void acaoBotaoCancelar() {
@@ -277,24 +238,8 @@ public class FilmeController {
         limparCampos();
         bloquearCampos();
     }
-
-//    public void acaoBotaoAlterar() {
-//        this.viewCliente.getJbtNovo().setEnabled(false);
-//        this.viewCliente.getJbtAlterar().setEnabled(false);
-//        this.viewCliente.getJbtExcluir().setEnabled(false);
-//        this.viewCliente.getJbtSair().setEnabled(false);
-//        this.viewCliente.getJbtSalvar().setEnabled(true);
-//        this.viewCliente.getJbtCancelar().setEnabled(true);
-//        liberarCampos();
-//        this.viewCliente.getJtfCpf().setEditable(false);
-//        this.viewCliente.getJtfRg().setEditable(false);
-//        this.viewCliente.getJtfNome().setEditable(false);
-//        this.viewCliente.getJtfIdade().setEditable(false);
-//        this.viewCliente.getJtfLogradouro().grabFocus();
-//        this.viewCliente.getCbSexo().setEnabled(false);
-//    }
-
-    public void acaoBotaoNovo() {
+    
+    public void acaoBotaoAlterar() {
         this.viewFilme.getJbtNovo().setEnabled(false);
         this.viewFilme.getJbtAlterar().setEnabled(false);
         this.viewFilme.getJbtExcluir().setEnabled(false);
@@ -302,6 +247,171 @@ public class FilmeController {
         this.viewFilme.getJbtSalvar().setEnabled(true);
         this.viewFilme.getJbtCancelar().setEnabled(true);
         liberarCampos();
-        this.alterar = false;
+        this.viewFilme.getJtfCodigo().setEditable(false);
+        this.viewFilme.getJtfNome().setEditable(false);
+    }
+
+    public void liberarCampos() {
+        this.viewFilme.getJtfPesquisarNome().setEditable(false);
+        this.viewFilme.getJtfCodigo().grabFocus();
+        this.viewFilme.getJtfCodigo().setEditable(true);
+        this.viewFilme.getJtfNome().setEditable(true);
+        this.viewFilme.getJtfValor().setEditable(true);
+        this.viewFilme.getJtfValorPromocao().setEditable(true);
+        this.viewFilme.getJcbDisponivel().setEnabled(true);
+        this.viewFilme.getJcbPromocao().setEnabled(true);
+        this.viewFilme.getJchAcao().setEnabled(true);
+        this.viewFilme.getJchFiccao().setEnabled(true);
+        this.viewFilme.getJchTerror().setEnabled(true);
+        this.viewFilme.getJchComedia().setEnabled(true);
+        this.viewFilme.getJchInfantil().setEnabled(true);
+        this.viewFilme.getJchAnimacao().setEnabled(true);
+        this.viewFilme.getJchAventura().setEnabled(true);
+        this.viewFilme.getJchOutro().setEnabled(true);
+    }
+
+    public void limparCampos() {
+        this.viewFilme.getJtfCodigo().setText(null);
+        this.viewFilme.getJtfNome().setText(null);
+        this.viewFilme.getJtfValor().setText(null);
+        this.viewFilme.getJtfValorPromocao().setText(null);
+        this.viewFilme.getJcbDisponivel().setSelectedIndex(0);
+        this.viewFilme.getJcbPromocao().setSelectedIndex(0);
+        this.viewFilme.getJchAcao().setSelected(false);
+        this.viewFilme.getJchFiccao().setSelected(false);
+        this.viewFilme.getJchTerror().setSelected(false);
+        this.viewFilme.getJchComedia().setSelected(false);
+        this.viewFilme.getJchInfantil().setSelected(false);
+        this.viewFilme.getJchAnimacao().setSelected(false);
+        this.viewFilme.getJchAventura().setSelected(false);
+        this.viewFilme.getJchOutro().setSelected(false);
+    }
+    
+    public String verificaGenero() {
+        String retorno = "";
+        
+        if (this.viewFilme.getJchAcao().isSelected()) {
+            retorno += "Ação;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchFiccao().isSelected()) {
+            retorno += "Ficcao;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchTerror().isSelected()) {
+            retorno += "Terror;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchComedia().isSelected()) {
+            retorno += "Comedia;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchInfantil().isSelected()) {
+            retorno += "Infantil;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchAnimacao().isSelected()) {
+            retorno += "Animacao;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchAventura().isSelected()) {
+            retorno += "Aventura;";    
+        } else {
+            retorno += " ;";
+        }
+        
+        if (this.viewFilme.getJchOutro().isSelected()) {
+            retorno += "Outro";    
+        } else {
+            retorno += " ;";
+        }
+        
+        return retorno;
+    }
+    
+    public void carregarCheckBoxGenero() {
+        String genero[] = filme.getGenero().split(";");
+        
+        if (!genero[0].equals(" ")) {
+            this.viewFilme.getJchAcao().setSelected(true);
+        }
+        
+        if (!genero[1].equals(" ")) {
+            this.viewFilme.getJchFiccao().setSelected(true);
+        }
+        
+        if (!genero[2].equals(" ")) {
+            this.viewFilme.getJchTerror().setSelected(true);
+        }
+        
+        if (!genero[3].equals(" ")) {
+            this.viewFilme.getJchComedia().setSelected(true);
+        }
+        
+        if (!genero[4].equals(" ")) {
+            this.viewFilme.getJchInfantil().setSelected(true);
+        }
+        
+        if (!genero[5].equals(" ")) {
+            this.viewFilme.getJchAnimacao().setSelected(true);
+        }
+        
+        if (!genero[6].equals(" ")) {
+            this.viewFilme.getJchAventura().setSelected(true);
+        }
+        
+        if (!genero[7].equals(" ")) {
+            this.viewFilme.getJchOutro().setSelected(true);
+        }
+    }
+    
+    public String carregarGeneroTabela(String aux) {
+        String genero[] = aux.split(";");
+        String retorno = "";
+        
+        if (!genero[0].equals(" ")) {
+            retorno += "Ação";
+        }
+        
+        if (!genero[1].equals(" ")) {
+            retorno += " Ficcao";
+        }
+        
+        if (!genero[2].equals(" ")) {
+            retorno += " Terror";
+        }
+        
+        if (!genero[3].equals(" ")) {
+            retorno += " Comédia";
+        }
+        
+        if (!genero[4].equals(" ")) {
+            retorno += " Infantil";
+        }
+        
+        if (!genero[5].equals(" ")) {
+            retorno += " Animação";
+        }
+        
+        if (!genero[6].equals(" ")) {
+            retorno += " Aventura";
+        }
+        
+        if (!genero[7].equals(" ")) {
+            retorno += " Outro";
+        }
+        return retorno;
     }
 }

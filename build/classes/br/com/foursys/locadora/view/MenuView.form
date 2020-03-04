@@ -115,7 +115,7 @@
                   <Component id="jbtLocacao" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="jbtSair" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <EmptySpace pref="212" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

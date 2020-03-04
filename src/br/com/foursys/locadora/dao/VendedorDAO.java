@@ -72,10 +72,10 @@ public class VendedorDAO {
 			Cidade cidade = new Cidade(cursor.getString("cidade"));
 			vendedor.setCidade(cidade);
 			
-			String aux[] = (cursor.getString("estado")).split(" - ");
-			String uf = aux[0];
-			String nome = aux[1];
-			Estado estado = new Estado(nome, uf);
+//			String aux[] = (cursor.getString("estado")).split(" - ");
+//			String uf = aux[0];
+//			String nome = aux[1];
+			Estado estado = new Estado(cursor.getString("estado"), "");
 			vendedor.setEstado(estado);
 			
 			char sex = cursor.getString("sexo").charAt(0);

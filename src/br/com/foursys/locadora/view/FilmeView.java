@@ -4,17 +4,18 @@ import br.com.foursys.locadora.controller.FilmeController;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 public class FilmeView extends javax.swing.JFrame {
 
-    FilmeController controllerCliente = new FilmeController(FilmeView.this);
+    FilmeController controllerFilme = new FilmeController(FilmeView.this);
     
       public FilmeView() {
         initComponents();
         setLocationRelativeTo(null);
-        this.controllerCliente.listarFilmes();
-        this.controllerCliente.bloqueioInicial();
+        this.controllerFilme.listarFilmes();
+        this.controllerFilme.bloqueioInicial();
         setVisible(true);
     }
 
@@ -22,31 +23,31 @@ public class FilmeView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtfPesquisarNome = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtfValor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jtfValorPromocao = new javax.swing.JTextField();
-        jtfCodigo = new javax.swing.JTextField();
         jtfNome = new javax.swing.JTextField();
-        cbDisponivel = new javax.swing.JComboBox();
-        cbPromocao = new javax.swing.JComboBox();
-        jcbAcao = new javax.swing.JCheckBox();
-        jcbFiccao = new javax.swing.JCheckBox();
-        jcbTerror = new javax.swing.JCheckBox();
-        jcbComedia = new javax.swing.JCheckBox();
-        jcbInfantil = new javax.swing.JCheckBox();
-        jcbAnimacao = new javax.swing.JCheckBox();
-        jcbAventura = new javax.swing.JCheckBox();
-        jcbOutro = new javax.swing.JCheckBox();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jtfPesquisarNome = new javax.swing.JTextField();
+        jcbDisponivel = new javax.swing.JComboBox();
+        jcbPromocao = new javax.swing.JComboBox();
+        jchAcao = new javax.swing.JCheckBox();
+        jchFiccao = new javax.swing.JCheckBox();
+        jchTerror = new javax.swing.JCheckBox();
+        jchComedia = new javax.swing.JCheckBox();
+        jchInfantil = new javax.swing.JCheckBox();
+        jchAnimacao = new javax.swing.JCheckBox();
+        jchAventura = new javax.swing.JCheckBox();
+        jchOutro = new javax.swing.JCheckBox();
+        jtfCodigo = new javax.swing.JFormattedTextField();
+        jtfValor = new javax.swing.JFormattedTextField();
+        jtfValorPromocao = new javax.swing.JFormattedTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,17 +63,21 @@ public class FilmeView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cadastro de Filme");
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Filme", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jLabel1.setText("Nome:");
+
+        jtfPesquisarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                acaoPreencher(evt);
+            }
+        });
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Filme", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel3.setText("Código:");
 
         jLabel4.setText("Valor:");
-
-        jtfValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfValorActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Disponível:");
 
@@ -84,31 +89,31 @@ public class FilmeView extends javax.swing.JFrame {
 
         jLabel12.setText("Valor Promoção");
 
-        jtfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCodigoActionPerformed(evt);
-            }
-        });
+        jcbDisponivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "SIM", "NÃO" }));
 
-        cbDisponivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Sim", "Não" }));
+        jcbPromocao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "SIM", "NÃO" }));
 
-        cbPromocao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Sim", "Não" }));
+        jchAcao.setText("Ação");
 
-        jcbAcao.setText("Ação");
+        jchFiccao.setText("Ficção");
 
-        jcbFiccao.setText("Ficção");
+        jchTerror.setText("Terror");
 
-        jcbTerror.setText("Terror");
+        jchComedia.setText("Comédia");
 
-        jcbComedia.setText("Comédia");
+        jchInfantil.setText("Infantil");
 
-        jcbInfantil.setText("Infantil");
+        jchAnimacao.setText("Animação");
 
-        jcbAnimacao.setText("Animação");
+        jchAventura.setText("Aventura");
 
-        jcbAventura.setText("Aventura");
+        jchOutro.setText("Outro");
 
-        jcbOutro.setText("Outro");
+        jtfCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jtfValorPromocao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -124,46 +129,46 @@ public class FilmeView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfCodigo)
+                            .addComponent(jcbDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfValor, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfNome))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(cbPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jcbPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jtfValorPromocao))))
+                                    .addComponent(jtfValorPromocao)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfNome)))
                         .addGap(23, 23, 23))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jcbAcao)
+                        .addComponent(jchAcao)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbFiccao)
+                        .addComponent(jchFiccao)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbTerror)
+                        .addComponent(jchTerror)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbComedia)
+                        .addComponent(jchComedia)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbInfantil)
+                        .addComponent(jchInfantil)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbAnimacao)
+                        .addComponent(jchAnimacao)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbAventura)
+                        .addComponent(jchAventura)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbOutro)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jchOutro)
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,43 +176,33 @@ public class FilmeView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
-                    .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
+                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfValorPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(cbDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jcbAcao)
-                    .addComponent(jcbFiccao)
-                    .addComponent(jcbTerror)
-                    .addComponent(jcbComedia)
-                    .addComponent(jcbInfantil)
-                    .addComponent(jcbAnimacao)
-                    .addComponent(jcbAventura)
-                    .addComponent(jcbOutro))
+                    .addComponent(jchAcao)
+                    .addComponent(jchFiccao)
+                    .addComponent(jchTerror)
+                    .addComponent(jchComedia)
+                    .addComponent(jchInfantil)
+                    .addComponent(jchAnimacao)
+                    .addComponent(jchAventura)
+                    .addComponent(jchOutro))
                 .addGap(29, 29, 29))
         );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Filme", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-
-        jLabel1.setText("Nome:");
-
-        jtfPesquisarNome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                acaoPreencher(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -215,10 +210,14 @@ public class FilmeView extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +226,9 @@ public class FilmeView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
@@ -353,7 +354,6 @@ public class FilmeView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 9, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -368,11 +368,9 @@ public class FilmeView extends javax.swing.JFrame {
                     .addComponent(jbtAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(179, 179, 179)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,15 +382,15 @@ public class FilmeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNovoActionPerformed
-        this.controllerCliente.acaoBotaoNovo();
+        this.controllerFilme.acaoBotaoNovo();
     }//GEN-LAST:event_jbtNovoActionPerformed
 
     private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
-//        this.controllerCliente.alterarCliente();
+        this.controllerFilme.alterarFilme();
     }//GEN-LAST:event_jbtAlterarActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
-        this.controllerCliente.excluirFilme();
+        this.controllerFilme.excluirFilme();
     }//GEN-LAST:event_jbtExcluirActionPerformed
 
     private void jbtSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSairActionPerformed
@@ -400,28 +398,18 @@ public class FilmeView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtSairActionPerformed
 
     private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
-        this.controllerCliente.acaoBotaoCancelar();
+        this.controllerFilme.acaoBotaoCancelar();
     }//GEN-LAST:event_jbtCancelarActionPerformed
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
-        this.controllerCliente.salvarFilme();
+        this.controllerFilme.salvarFilme();
     }//GEN-LAST:event_jbtSalvarActionPerformed
 
     private void acaoPreencher(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_acaoPreencher
         
     }//GEN-LAST:event_acaoPreencher
 
-    private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfValorActionPerformed
-
-    private void jtfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCodigoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbDisponivel;
-    private javax.swing.JComboBox cbPromocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
@@ -442,44 +430,46 @@ public class FilmeView extends javax.swing.JFrame {
     private javax.swing.JButton jbtNovo;
     private javax.swing.JButton jbtSair;
     private javax.swing.JButton jbtSalvar;
-    private javax.swing.JCheckBox jcbAcao;
-    private javax.swing.JCheckBox jcbAnimacao;
-    private javax.swing.JCheckBox jcbAventura;
-    private javax.swing.JCheckBox jcbComedia;
-    private javax.swing.JCheckBox jcbFiccao;
-    private javax.swing.JCheckBox jcbInfantil;
-    private javax.swing.JCheckBox jcbOutro;
-    private javax.swing.JCheckBox jcbTerror;
-    private javax.swing.JTextField jtfCodigo;
+    private javax.swing.JComboBox jcbDisponivel;
+    private javax.swing.JComboBox jcbPromocao;
+    private javax.swing.JCheckBox jchAcao;
+    private javax.swing.JCheckBox jchAnimacao;
+    private javax.swing.JCheckBox jchAventura;
+    private javax.swing.JCheckBox jchComedia;
+    private javax.swing.JCheckBox jchFiccao;
+    private javax.swing.JCheckBox jchInfantil;
+    private javax.swing.JCheckBox jchOutro;
+    private javax.swing.JCheckBox jchTerror;
+    private javax.swing.JFormattedTextField jtfCodigo;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfPesquisarNome;
-    private javax.swing.JTextField jtfValor;
-    private javax.swing.JTextField jtfValorPromocao;
+    private javax.swing.JFormattedTextField jtfValor;
+    private javax.swing.JFormattedTextField jtfValorPromocao;
     private javax.swing.JTable tabelaFilme;
     // End of variables declaration//GEN-END:variables
 
-    public FilmeController getControllerCliente() {
-        return controllerCliente;
+    public FilmeController getControllerFilme() {
+        return controllerFilme;
     }
 
-    public void setControllerCliente(FilmeController controllerCliente) {
-        this.controllerCliente = controllerCliente;
+    public void setControllerFilme(FilmeController controllerCliente) {
+        this.controllerFilme = controllerCliente;
     }
 
-    public JComboBox getCbDisponivel() {
-        return cbDisponivel;
+    public JComboBox getJcbDisponivel() {
+        return jcbDisponivel;
     }
 
-    public void setCbDisponivel(JComboBox cbDisponivel) {
-        this.cbDisponivel = cbDisponivel;
+    public void setJcbDisponivel(JComboBox jcbDisponivel) {
+        this.jcbDisponivel = jcbDisponivel;
     }
 
-    public JComboBox getCbPromocao() {
-        return cbPromocao;
+    public JComboBox getJcbPromocao() {
+        return jcbPromocao;
     }
 
-    public void setCbPromocao(JComboBox cbPromocao) {
-        this.cbPromocao = cbPromocao;
+    public void setJcbPromocao(JComboBox jcbPromocao) {
+        this.jcbPromocao = jcbPromocao;
     }
 
     public JButton getJbtAlterar() {
@@ -530,75 +520,75 @@ public class FilmeView extends javax.swing.JFrame {
         this.jbtSalvar = jbtSalvar;
     }
 
-    public JCheckBox getJcbAcao() {
-        return jcbAcao;
+    public JCheckBox getJchAnimacao() {
+        return jchAnimacao;
     }
 
-    public void setJcbAcao(JCheckBox jcbAcao) {
-        this.jcbAcao = jcbAcao;
+    public void setJchAnimacao(JCheckBox jchAnimacao) {
+        this.jchAnimacao = jchAnimacao;
     }
 
-    public JCheckBox getJcbAnimacao() {
-        return jcbAnimacao;
+    public JCheckBox getJchAventura() {
+        return jchAventura;
     }
 
-    public void setJcbAnimacao(JCheckBox jcbAnimacao) {
-        this.jcbAnimacao = jcbAnimacao;
+    public void setJchAventura(JCheckBox jchAventura) {
+        this.jchAventura = jchAventura;
     }
 
-    public JCheckBox getJcbAventura() {
-        return jcbAventura;
+    public JCheckBox getJchComedia() {
+        return jchComedia;
     }
 
-    public void setJcbAventura(JCheckBox jcbAventura) {
-        this.jcbAventura = jcbAventura;
+    public void setJchComedia(JCheckBox jchComedia) {
+        this.jchComedia = jchComedia;
     }
 
-    public JCheckBox getJcbComedia() {
-        return jcbComedia;
+    public JCheckBox getJchFiccao() {
+        return jchFiccao;
     }
 
-    public void setJcbComedia(JCheckBox jcbComedia) {
-        this.jcbComedia = jcbComedia;
+    public void setJchFiccao(JCheckBox jchFiccao) {
+        this.jchFiccao = jchFiccao;
     }
 
-    public JCheckBox getJcbFiccao() {
-        return jcbFiccao;
+    public JCheckBox getJchInfantil() {
+        return jchInfantil;
     }
 
-    public void setJcbFiccao(JCheckBox jcbFiccao) {
-        this.jcbFiccao = jcbFiccao;
+    public void setJchInfantil(JCheckBox jchInfantil) {
+        this.jchInfantil = jchInfantil;
     }
 
-    public JCheckBox getJcbInfantil() {
-        return jcbInfantil;
+    public JCheckBox getJchOutro() {
+        return jchOutro;
     }
 
-    public void setJcbInfantil(JCheckBox jcbInfantil) {
-        this.jcbInfantil = jcbInfantil;
+    public void setJchOutro(JCheckBox jchOutro) {
+        this.jchOutro = jchOutro;
     }
 
-    public JCheckBox getJcbOutro() {
-        return jcbOutro;
+    public JCheckBox getJchTerror() {
+        return jchTerror;
     }
 
-    public void setJcbOutro(JCheckBox jcbOutro) {
-        this.jcbOutro = jcbOutro;
+    public void setJchTerror(JCheckBox jchTerror) {
+        this.jchTerror = jchTerror;
     }
 
-    public JCheckBox getJcbTerror() {
-        return jcbTerror;
+    public JCheckBox getJchAcao() {
+        return jchAcao;
     }
 
-    public void setJcbTerror(JCheckBox jcbTerror) {
-        this.jcbTerror = jcbTerror;
+    public void setJchAcao(JCheckBox jchAcao) {
+        this.jchAcao = jchAcao;
     }
 
-    public JTextField getJtfCodigo() {
+    public JFormattedTextField getJtfCodigo() {
         return jtfCodigo;
     }
 
-    public void setJtfCodigo(JTextField jtfCodigo) {
+    public void setJtfCodigo(JFormattedTextField jtfCodigo) {
         this.jtfCodigo = jtfCodigo;
     }
 
@@ -618,19 +608,19 @@ public class FilmeView extends javax.swing.JFrame {
         this.jtfPesquisarNome = jtfPesquisarNome;
     }
 
-    public JTextField getJtfValor() {
+    public JFormattedTextField getJtfValor() {
         return jtfValor;
     }
 
-    public void setJtfValor(JTextField jtfValor) {
+    public void setJtfValor(JFormattedTextField jtfValor) {
         this.jtfValor = jtfValor;
     }
 
-    public JTextField getJtfValorPromocao() {
+    public JFormattedTextField getJtfValorPromocao() {
         return jtfValorPromocao;
     }
 
-    public void setJtfValorPromocao(JTextField jtfValorPromocao) {
+    public void setJtfValorPromocao(JFormattedTextField jtfValorPromocao) {
         this.jtfValorPromocao = jtfValorPromocao;
     }
 

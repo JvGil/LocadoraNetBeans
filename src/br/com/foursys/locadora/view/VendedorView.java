@@ -3,6 +3,7 @@ package br.com.foursys.locadora.view;
 import br.com.foursys.locadora.controller.VendedorController;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -34,11 +35,11 @@ public class VendedorView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox();
-        jtfIdade = new javax.swing.JTextField();
         cbCidade = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cbSexo = new javax.swing.JComboBox();
-        jtfSalario = new javax.swing.JTextField();
+        jtfIdade = new javax.swing.JFormattedTextField();
+        jtfSalario = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtfPesquisarNome = new javax.swing.JTextField();
@@ -85,6 +86,10 @@ public class VendedorView extends javax.swing.JFrame {
 
         cbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "M", "F" }));
 
+        jtfIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jtfSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -112,16 +117,17 @@ public class VendedorView extends javax.swing.JFrame {
                                         .addGap(83, 83, 83)
                                         .addComponent(jLabel2)
                                         .addGap(44, 44, 44)
-                                        .addComponent(cbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cbSexo, 0, 94, Short.MAX_VALUE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
                                         .addComponent(jtfAreaVenda)))
                                 .addGap(23, 23, 23))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -140,9 +146,9 @@ public class VendedorView extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jtfAreaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfAreaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -397,10 +403,10 @@ public class VendedorView extends javax.swing.JFrame {
     private javax.swing.JButton jbtSair;
     private javax.swing.JButton jbtSalvar;
     private javax.swing.JTextField jtfAreaVenda;
-    private javax.swing.JTextField jtfIdade;
+    private javax.swing.JFormattedTextField jtfIdade;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfPesquisarNome;
-    private javax.swing.JTextField jtfSalario;
+    private javax.swing.JFormattedTextField jtfSalario;
     private javax.swing.JTable tabelaVendedor;
     // End of variables declaration//GEN-END:variables
 
@@ -492,11 +498,11 @@ public class VendedorView extends javax.swing.JFrame {
         this.jtfAreaVenda = jtfAreaVenda;
     }
 
-    public JTextField getJtfIdade() {
+    public JFormattedTextField getJtfIdade() {
         return jtfIdade;
     }
 
-    public void setJtfIdade(JTextField jtfIdade) {
+    public void setJtfIdade(JFormattedTextField jtfIdade) {
         this.jtfIdade = jtfIdade;
     }
 
@@ -516,11 +522,11 @@ public class VendedorView extends javax.swing.JFrame {
         this.jtfPesquisarNome = jtfPesquisarNome;
     }
 
-    public JTextField getJtfSalario() {
+    public JFormattedTextField getJtfSalario() {
         return jtfSalario;
     }
 
-    public void setJtfSalario(JTextField jtfSalario) {
+    public void setJtfSalario(JFormattedTextField jtfSalario) {
         this.jtfSalario = jtfSalario;
     }
 

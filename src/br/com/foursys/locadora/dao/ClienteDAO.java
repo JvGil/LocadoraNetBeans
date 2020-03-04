@@ -84,10 +84,10 @@ public class ClienteDAO {
 			Cidade cidade = new Cidade(cursor.getString("cidade"));
 			cliente.setCidade(cidade);
 
-			String aux[] = (cursor.getString("estado")).split(" - ");
-			String uf = aux[0];
-			String nome = aux[1];
-			Estado estado = new Estado(nome, uf);
+//			String aux[] = (cursor.getString("estado")).split(" - ");
+//			String uf = aux[0];
+//			String nome = aux[1];
+			Estado estado = new Estado(cursor.getString("estado"), "");
 			cliente.setEstado(estado);
 
 			cliente.setTelefone(cursor.getString("telefone"));

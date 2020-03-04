@@ -44,12 +44,12 @@ public class ClienteView extends javax.swing.JFrame {
         jtfRg = new javax.swing.JFormattedTextField();
         jtfCpf = new javax.swing.JFormattedTextField();
         cbEstado = new javax.swing.JComboBox();
-        jtfIdade = new javax.swing.JTextField();
         cbCidade = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cbSexo = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jtfDataNascimento = new javax.swing.JFormattedTextField();
+        jtfIdade = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtfPesquisarNome = new javax.swing.JTextField();
@@ -136,6 +136,13 @@ public class ClienteView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jtfIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jtfIdade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfIdadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -151,12 +158,6 @@ public class ClienteView extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jtfLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfNumeroLogradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jtfBairro)
                                 .addGap(34, 34, 34)
@@ -182,12 +183,21 @@ public class ClienteView extends javax.swing.JFrame {
                                         .addComponent(jtfDataNascimento))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(53, 53, 53)
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbSexo, 0, 77, Short.MAX_VALUE))))))
+                                        .addComponent(cbSexo, 0, 77, Short.MAX_VALUE))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jtfLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtfNumeroLogradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jtfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
@@ -459,6 +469,10 @@ public class ClienteView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfNomeActionPerformed
 
+    private void jtfIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfIdadeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbCidade;
     private javax.swing.JComboBox cbEstado;
@@ -491,7 +505,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JTextField jtfBairro;
     private javax.swing.JFormattedTextField jtfCpf;
     private javax.swing.JFormattedTextField jtfDataNascimento;
-    private javax.swing.JTextField jtfIdade;
+    private javax.swing.JFormattedTextField jtfIdade;
     private javax.swing.JTextField jtfLogradouro;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfNumeroLogradouro;
@@ -605,11 +619,11 @@ public class ClienteView extends javax.swing.JFrame {
         this.jtfDataNascimento = jtfDataNascimento;
     }
 
-    public JTextField getJtfIdade() {
+    public JFormattedTextField getJtfIdade() {
         return jtfIdade;
     }
 
-    public void setJtfIdade(JTextField jtfIdade) {
+    public void setJtfIdade(JFormattedTextField jtfIdade) {
         this.jtfIdade = jtfIdade;
     }
 

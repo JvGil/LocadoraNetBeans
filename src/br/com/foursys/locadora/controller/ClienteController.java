@@ -47,7 +47,7 @@ public class ClienteController {
             this.viewCliente.getJtfNumeroLogradouro().setText(cliente.getNumLogradouro()+ "");
             this.viewCliente.getJtfBairro().setText(cliente.getBairro());
             this.viewCliente.getCbCidade().setSelectedItem(cliente.getCidade().toString());
-            this.viewCliente.getCbEstado().setSelectedItem(cliente.getEstado().getNome());
+            this.viewCliente.getCbEstado().setSelectedItem(cliente.getEstado().toString());
             this.viewCliente.getJtfTelefone().setText(cliente.getTelefone());
             this.viewCliente.getJtfDataNascimento().setText(cliente.getDataNasc());
             this.alterar = true;
@@ -154,12 +154,12 @@ public class ClienteController {
             return false;
         }
         
-        if (this.viewCliente.getJtfNome().getText().equals("")) {
+        if (this.viewCliente.getJtfNome().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome, campo obrigatório.");
             return false;
         }
         
-        if (this.viewCliente.getJtfIdade().getText().equals("")) {
+        if (this.viewCliente.getJtfIdade().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a idade, campo obrigatório.");
             return false;
         }
@@ -169,22 +169,22 @@ public class ClienteController {
             return false;
         }
         
-        if (this.viewCliente.getJtfLogradouro().getText().equals("")) {
+        if (this.viewCliente.getJtfLogradouro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o endereço, campo obrigatório.");
             return false;
         }
         
-        if (this.viewCliente.getJtfNumeroLogradouro().getText().equals("")) {
+        if (this.viewCliente.getJtfNumeroLogradouro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o número, campo obrigatório.");
             return false;
         }
         
-        if (this.viewCliente.getJtfBairro().getText().equals("")) {
+        if (this.viewCliente.getJtfBairro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o bairro, campo obrigatório.");
             return false;
         }
         
-        if (this.viewCliente.getJtfTelefone().getText().equals("")) {
+        if (this.viewCliente.getJtfTelefone().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o telefone, campo obrigatório.");
             return false;
         }
@@ -322,6 +322,7 @@ public class ClienteController {
         this.viewCliente.getJtfCpf().setEditable(false);
         this.viewCliente.getJtfRg().setEditable(false);
         this.viewCliente.getJtfNome().setEditable(false);
+        this.viewCliente.getJtfDataNascimento().setEditable(false);
         this.viewCliente.getJtfIdade().setEditable(false);
         this.viewCliente.getJtfLogradouro().grabFocus();
         this.viewCliente.getCbSexo().setEnabled(false);

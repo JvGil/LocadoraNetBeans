@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/Main.java</file>
-            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/dao/CidadeDAO.java</file>
-            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/view/ClienteView.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/dao/VendedorDAO.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/util/ConnectionFactory.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/view/FilmeView.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/dao/FilmeDAO.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/model/Cliente.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/dao/ClienteDAO.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/model/Filme.java</file>
             <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/controller/CidadeController.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/view/VendedorView.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/controller/VendedorController.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/model/Estado.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/controller/FilmeController.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/controller/ClienteController.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/view/MenuView.java</file>
+            <file>file:/C:/Workspace%20NetBeans/Locadora/src/br/com/foursys/locadora/view/ClienteView.java</file>
         </group>
     </open-files>
 </project-private>

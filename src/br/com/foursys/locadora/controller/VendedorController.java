@@ -127,7 +127,7 @@ public class VendedorController {
     }
 
     public boolean validarSalvar() {
-        if (this.viewVendedor.getJtfNome().getText().equals("")) {
+        if (this.viewVendedor.getJtfNome().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome, campo obrigatório.");
             return false;
         }
@@ -137,12 +137,12 @@ public class VendedorController {
             return false;
         }
         
-        if (this.viewVendedor.getJtfIdade().getText().equals("")) {
+        if (this.viewVendedor.getJtfIdade().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a idade, campo obrigatório.");
             return false;
         }
         
-        if (this.viewVendedor.getJtfAreaVenda().getText().equals("")) {
+        if (this.viewVendedor.getJtfAreaVenda().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a área de venda, campo obrigatório.");
             return false;
         }
@@ -157,7 +157,7 @@ public class VendedorController {
             return false;
         }
         
-        if (this.viewVendedor.getJtfSalario().getText().equals("")) {
+        if (this.viewVendedor.getJtfSalario().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o salário, campo obrigatório.");
             return false;
         }
@@ -222,8 +222,8 @@ public class VendedorController {
         this.viewVendedor.getJtfNome().setEditable(false);
         this.viewVendedor.getCbCidade().setEnabled(false);
         this.viewVendedor.getCbEstado().setEnabled(false);
-        this.viewVendedor.getJtfAreaVenda().setEnabled(false);
-        this.viewVendedor.getJtfSalario().setEnabled(false);
+        this.viewVendedor.getJtfAreaVenda().setEditable(false);
+        this.viewVendedor.getJtfSalario().setEditable(false);
     }
 
     public void liberarCampos() {

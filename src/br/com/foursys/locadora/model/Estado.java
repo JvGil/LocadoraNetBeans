@@ -34,6 +34,6 @@ public class Estado {
 	
 	@Override
 		public String toString() {
-			return uf + " - " + nome;
+			return nome;
 		}
 }
