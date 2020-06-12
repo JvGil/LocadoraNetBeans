@@ -10,6 +10,13 @@ import com.mysql.jdbc.Connection;
 
 import br.com.foursys.locadora.model.Filme;
 
+/**
+ * Classe responsável por conexao com tabela Filme
+ *
+ * @author jgil
+ * @since 28/02/2020
+ * @version 0.1
+ */
 public class FilmeDAO {
 
     private Connection bd;

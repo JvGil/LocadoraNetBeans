@@ -1,0 +1,5 @@
+Cristiane Damas Gil;133.490.918-06;Lucas;Balcão;Cheque
+Gilberto;646.456.341-64;Lucas;Balcão;Dinheiro;1;A Era do Gelo;10.0;true;6.0;1;A Era do Gelo;10.0;true;6.0;
+Gilberto;646.456.341-64;Lucas;Balcão;Dinheiro;1;A Era do Gelo;10.0;true;6.0;1;A Era do Gelo;10.0;true;6.0;
+Cristiane Damas Gil;133.490.918-06;Lucas;Balcão;Dinheiro;1;A Era do Gelo;10.0;true;6.0;
+Gilberto;646.456.341-64;Alberto;Caixa;Dinheiro;1;A Era do Gelo;10.0;true;6.0;

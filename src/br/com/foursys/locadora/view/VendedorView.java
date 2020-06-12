@@ -7,11 +7,18 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+/**
+ * Classe responsável pela interface do Vendedor (cadastrar, alterar e excluir)
+ *
+ * @author jgil
+ * @since 05/03/2020
+ * @version 0.1
+ */
 public class VendedorView extends javax.swing.JFrame {
 
     VendedorController controllerVendedor = new VendedorController(VendedorView.this);
-    
-      public VendedorView() {
+
+    public VendedorView() {
         initComponents();
         setLocationRelativeTo(null);
         this.controllerVendedor.listarVendedores();
@@ -371,7 +378,7 @@ public class VendedorView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtSalvarActionPerformed
 
     private void acaoPreencher(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_acaoPreencher
-        
+
     }//GEN-LAST:event_acaoPreencher
 
     private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed

@@ -15,8 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Classe responsável por controlar os Vendedores
  *
- * @author dmunhoz
+ * @author jgil
+ * @since 05/03/2020
+ * @version 0.1
  */
 public class VendedorController {
 
@@ -30,37 +33,41 @@ public class VendedorController {
     public VendedorController(VendedorView viewVendedor) {
         this.viewVendedor = viewVendedor;
     }
-    
+
+    public VendedorController() {
+        this.viewVendedor = viewVendedor;
+    }
+
     public void alterarVendedor() {
         DefaultTableModel modelo = (DefaultTableModel) this.viewVendedor.getTabelaVendedor().getModel();
         if (this.viewVendedor.getTabelaVendedor().getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "É necessário selecionar um vendedor");
         } else {
             vendedor = listaVendedores.get(this.viewVendedor.getTabelaVendedor().getSelectedRow());
-            
+
             this.viewVendedor.getJtfNome().setText(vendedor.getNome());
             this.viewVendedor.getCbSexo().setSelectedItem(vendedor.getSexo() + "");
             this.viewVendedor.getJtfIdade().setText(vendedor.getIdade() + "");
             this.viewVendedor.getJtfAreaVenda().setText(vendedor.getAreaVenda());
             this.viewVendedor.getCbCidade().setSelectedItem(vendedor.getCidade().toString());
             this.viewVendedor.getCbEstado().setSelectedItem(vendedor.getEstado().getNome());
-            this.viewVendedor.getJtfSalario().setText(vendedor.getSalario()+ "");
+            this.viewVendedor.getJtfSalario().setText(vendedor.getSalario() + "");
             this.alterar = true;
             acaoBotaoAlterar();
         }
     }
 
-    public void excluirVendedor(){
+    public void excluirVendedor() {
         DefaultTableModel modelo = (DefaultTableModel) this.viewVendedor.getTabelaVendedor().getModel();
         if (this.viewVendedor.getTabelaVendedor().getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "É necessário selecionar um vendedor");
         } else {
             vendedor = listaVendedores.get(this.viewVendedor.getTabelaVendedor().getSelectedRow());
-            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?","Atenção",
-                                                      JOptionPane.YES_OPTION,
-                                                      JOptionPane.CANCEL_OPTION);
+            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?", "Atenção",
+                    JOptionPane.YES_OPTION,
+                    JOptionPane.CANCEL_OPTION);
             if (opcao == JOptionPane.YES_OPTION) {
-                 Connection bd = ConnectionFactory.getConnection();
+                Connection bd = ConnectionFactory.getConnection();
                 VendedorDAO dao = new VendedorDAO(bd);
                 try {
                     dao.excluir(vendedor);
@@ -73,6 +80,7 @@ public class VendedorController {
             }
         }
     }
+
     public void salvarVendedor() {
         if (this.alterar == false) {
             //inserir um registro
@@ -109,7 +117,7 @@ public class VendedorController {
                 Estado estado = new Estado(this.viewVendedor.getCbEstado().getSelectedItem().toString(), "");
                 vendedor.setEstado(estado);
                 vendedor.setSalario(Double.parseDouble(this.viewVendedor.getJtfSalario().getText()));
-                
+
                 Connection bd = ConnectionFactory.getConnection();
                 VendedorDAO dao = new VendedorDAO(bd);
                 try {
@@ -136,27 +144,27 @@ public class VendedorController {
             JOptionPane.showMessageDialog(null, "Informe o sexo, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewVendedor.getJtfIdade().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a idade, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewVendedor.getJtfAreaVenda().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a área de venda, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewVendedor.getCbCidade().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe a Cidade, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewVendedor.getCbEstado().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe o Estado, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewVendedor.getJtfSalario().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o salário, campo obrigatório.");
             return false;
@@ -174,6 +182,17 @@ public class VendedorController {
         } catch (SQLException ex) {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Vendedor> buscarTodos() {
+        Connection bd = ConnectionFactory.getConnection();
+        VendedorDAO dao = new VendedorDAO(bd);
+        try {
+            listaVendedores = dao.buscarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaVendedores;
     }
 
     public void carregarTabela() {
@@ -234,8 +253,8 @@ public class VendedorController {
         this.viewVendedor.getJtfNome().setEditable(true);
         this.viewVendedor.getCbCidade().setEnabled(true);
         this.viewVendedor.getCbEstado().setEnabled(true);
-        this.viewVendedor.getJtfAreaVenda().setEnabled(true);
-        this.viewVendedor.getJtfSalario().setEnabled(true);
+        this.viewVendedor.getJtfAreaVenda().setEditable(true);
+        this.viewVendedor.getJtfSalario().setEditable(true);
     }
 
     public void limparCampos() {

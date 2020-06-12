@@ -7,11 +7,19 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+/**
+ * Classe responsável pela interface do Filme (cadastrar, alterar e excluir)
+ *
+ * @author jgil
+ * @since 05/03/2020
+ * @version 0.1
+ */
 public class FilmeView extends javax.swing.JFrame {
 
     FilmeController controllerFilme = new FilmeController(FilmeView.this);
-    
-      public FilmeView() {
+
+    public FilmeView() {
         initComponents();
         setLocationRelativeTo(null);
         this.controllerFilme.listarFilmes();
@@ -370,7 +378,7 @@ public class FilmeView extends javax.swing.JFrame {
                     .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,7 +414,7 @@ public class FilmeView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtSalvarActionPerformed
 
     private void acaoPreencher(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_acaoPreencher
-        
+
     }//GEN-LAST:event_acaoPreencher
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,89 +1,89 @@
 package br.com.foursys.locadora.model;
 
 /**
- * Classe responsável por indicar o que é um Vendedor
- * 
+ * Classe modelo para armazenar atributos de Vendedor
+ *
  * @author jgil
  * @since 28/02/2020
  * @version 0.1
  *
  */
-
 public class Vendedor {
-	private String nome;
-	private String areaVenda;
-	private Cidade cidade;
-	private Estado estado;
-	private char sexo;
-	private int idade;
-	private double salario;
-	
-	public Vendedor() {
-	}
 
-	public Vendedor(String nome, String areaVenda, Cidade cidade, Estado estado, char sexo, int idade, double salario) {
-		this.nome = nome;
-		this.areaVenda = areaVenda;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.sexo = sexo;
-		this.idade = idade;
-		this.salario = salario;
-	}
+    private String nome;
+    private String areaVenda;
+    private Cidade cidade;
+    private Estado estado;
+    private char sexo;
+    private int idade;
+    private double salario;
 
-	public String getNome() {
-		return nome;
-	}
+    public Vendedor() {
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Vendedor(String nome, String areaVenda, Cidade cidade, Estado estado, char sexo, int idade, double salario) {
+        this.nome = nome;
+        this.areaVenda = areaVenda;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.sexo = sexo;
+        this.idade = idade;
+        this.salario = salario;
+    }
 
-	public String getAreaVenda() {
-		return areaVenda;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setAreaVenda(String areaVenda) {
-		this.areaVenda = areaVenda;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public Cidade getCidade() {
-		return cidade;
-	}
+    public String getAreaVenda() {
+        return areaVenda;
+    }
 
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
+    public void setAreaVenda(String areaVenda) {
+        this.areaVenda = areaVenda;
+    }
 
-	public Estado getEstado() {
-		return estado;
-	}
+    public Cidade getCidade() {
+        return cidade;
+    }
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
 
-	public char getSexo() {
-		return sexo;
-	}
+    public Estado getEstado() {
+        return estado;
+    }
 
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
-	public int getIdade() {
-		return idade;
-	}
+    public char getSexo() {
+        return sexo;
+    }
 
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
 
-	public double getSalario() {
-		return salario;
-	}
+    public int getIdade() {
+        return idade;
+    }
 
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}	
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
 }

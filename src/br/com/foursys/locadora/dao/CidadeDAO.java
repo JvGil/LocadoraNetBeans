@@ -11,9 +11,11 @@ import com.mysql.jdbc.Connection;
 import br.com.foursys.locadora.model.Cidade;
 
 /**
- * Classe responsável por 
- * 
+ * Classe responsável por conexao com tabela Cidade
+ *
  * @author jgil
+ * @since 28/02/2020
+ * @version 0.1
  */
 
 public class CidadeDAO {

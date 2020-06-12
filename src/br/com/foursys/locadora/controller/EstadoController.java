@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * Classe responsável por controlar o Estado
- * 
+ *
  * @author jgil
  * @since 03/03/2020
  * @version 0.1

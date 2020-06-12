@@ -14,11 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Classe responsável por controlar o Filme
- * 
+ *
  * @author jgil
  * @since 04/03/2020
  * @version 0.1
  */
+
 public class FilmeController {
 
     private FilmeView viewFilme;
@@ -30,6 +31,10 @@ public class FilmeController {
         this.viewFilme = viewFilme;
     }
     
+    public FilmeController() {
+        this.viewFilme = viewFilme;
+    }
+    
     public void salvarFilme() {
         if (this.alterar == false) {
             //inserir um registro
@@ -37,7 +42,7 @@ public class FilmeController {
                 Filme filme = new Filme();
                 filme.setCodigo(Integer.parseInt(this.viewFilme.getJtfCodigo().getText()));
                 filme.setNome(this.viewFilme.getJtfNome().getText());
-                filme.setValor(Double.parseDouble(this.viewFilme.getJtfValor().getText()));
+                filme.setValor(Double.parseDouble(this.viewFilme.getJtfValor().getText().replace(',', '.')));
                 filme.setValorPromocao(Double.parseDouble(this.viewFilme.getJtfValorPromocao().getText()));
                 filme.setDisponivel((this.viewFilme.getJcbDisponivel().getSelectedItem().toString() == "SIM")?true:false);
                 filme.setPromocao((this.viewFilme.getJcbPromocao().getSelectedItem().toString() == "SIM")?true:false);
@@ -175,6 +180,17 @@ public class FilmeController {
         } catch (SQLException ex) {
             Logger.getLogger(FilmeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public List<Filme> buscarTodos() {
+        Connection bd = ConnectionFactory.getConnection();
+        FilmeDAO dao = new FilmeDAO(bd);
+        try {
+            listaFilmes = dao.buscarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaFilmes;
     }
 
     public void carregarTabela() {

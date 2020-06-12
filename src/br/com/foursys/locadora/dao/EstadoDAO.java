@@ -10,28 +10,35 @@ import com.mysql.jdbc.Connection;
 
 import br.com.foursys.locadora.model.Estado;
 
+/**
+ * Classe responsável por conexao com tabela Estado
+ *
+ * @author jgil
+ * @since 28/02/2020
+ * @version 0.1
+ */
 public class EstadoDAO {
 
-	private Connection bd;
+    private Connection bd;
 
-	public EstadoDAO(Connection bd) {
-		this.bd = bd;
-	}
+    public EstadoDAO(Connection bd) {
+        this.bd = bd;
+    }
 
-	public List<Estado> buscarTodos() throws SQLException {
-		String sql = "SELECT * FROM estado ORDER BY nome";
-		PreparedStatement comando = bd.prepareStatement(sql);
-		ResultSet cursor = comando.executeQuery();
-		List<Estado> listaEstados = new ArrayList<Estado>();
+    public List<Estado> buscarTodos() throws SQLException {
+        String sql = "SELECT * FROM estado ORDER BY nome";
+        PreparedStatement comando = bd.prepareStatement(sql);
+        ResultSet cursor = comando.executeQuery();
+        List<Estado> listaEstados = new ArrayList<Estado>();
 
-		while (cursor.next()) {
-			Estado estado = new Estado();
-			estado.setNome(cursor.getString("nome"));
-			estado.setUf(cursor.getString("uf"));
+        while (cursor.next()) {
+            Estado estado = new Estado();
+            estado.setNome(cursor.getString("nome"));
+            estado.setUf(cursor.getString("uf"));
 
-			listaEstados.add(estado);
-		}
-		return listaEstados;
+            listaEstados.add(estado);
+        }
+        return listaEstados;
 
-	}
+    }
 }

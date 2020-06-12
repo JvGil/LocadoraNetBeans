@@ -15,9 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * 
- * 
- * @author dmunhoz
+ * Classe responsável por controlar os Clientes
+ *
+ * @author jgil
+ * @since 05/03/2020
+ * @version 0.1
  */
 public class ClienteController {
 
@@ -31,7 +33,11 @@ public class ClienteController {
     public ClienteController(ClienteView viewCliente) {
         this.viewCliente = viewCliente;
     }
-    
+
+    public ClienteController() {
+        this.viewCliente = viewCliente;
+    }
+
     public void alterarCliente() {
         DefaultTableModel modelo = (DefaultTableModel) this.viewCliente.getTabelaCliente().getModel();
         if (this.viewCliente.getTabelaCliente().getSelectedRow() < 0) {
@@ -44,7 +50,7 @@ public class ClienteController {
             this.viewCliente.getJtfIdade().setText(cliente.getIdade() + "");
             this.viewCliente.getJtfNome().setText(cliente.getNome());
             this.viewCliente.getJtfLogradouro().setText(cliente.getLogradouro());
-            this.viewCliente.getJtfNumeroLogradouro().setText(cliente.getNumLogradouro()+ "");
+            this.viewCliente.getJtfNumeroLogradouro().setText(cliente.getNumLogradouro() + "");
             this.viewCliente.getJtfBairro().setText(cliente.getBairro());
             this.viewCliente.getCbCidade().setSelectedItem(cliente.getCidade().toString());
             this.viewCliente.getCbEstado().setSelectedItem(cliente.getEstado().toString());
@@ -55,17 +61,17 @@ public class ClienteController {
         }
     }
 
-    public void excluirCliente(){
+    public void excluirCliente() {
         DefaultTableModel modelo = (DefaultTableModel) this.viewCliente.getTabelaCliente().getModel();
         if (this.viewCliente.getTabelaCliente().getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "É necessário selecionar um cliente");
         } else {
             cliente = listaClientes.get(this.viewCliente.getTabelaCliente().getSelectedRow());
-            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?","Atenção",
-                                                      JOptionPane.YES_OPTION,
-                                                      JOptionPane.CANCEL_OPTION);
+            int opcao = JOptionPane.showConfirmDialog(null, "Confirma em excluir este registro?", "Atenção",
+                    JOptionPane.YES_OPTION,
+                    JOptionPane.CANCEL_OPTION);
             if (opcao == JOptionPane.YES_OPTION) {
-                 Connection bd = ConnectionFactory.getConnection();
+                Connection bd = ConnectionFactory.getConnection();
                 ClienteDAO dao = new ClienteDAO(bd);
                 try {
                     dao.excluir(cliente);
@@ -78,6 +84,7 @@ public class ClienteController {
             }
         }
     }
+
     public void salvarCliente() {
         if (this.alterar == false) {
             //inserir um registro
@@ -138,27 +145,27 @@ public class ClienteController {
     }
 
     public boolean validarSalvar() {
-                
+
         if (this.viewCliente.getJtfCpf().getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(null, "Informe o CPF, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfRg().getText().equals("  .   .   ")) {
             JOptionPane.showMessageDialog(null, "Informe o RG, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfDataNascimento().getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(null, "Informe a data de nascimento, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfNome().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfIdade().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe a idade, campo obrigatório.");
             return false;
@@ -168,38 +175,49 @@ public class ClienteController {
             JOptionPane.showMessageDialog(null, "Informe o sexo, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfLogradouro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o endereço, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfNumeroLogradouro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o número, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfBairro().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o bairro, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getJtfTelefone().getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o telefone, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getCbCidade().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe a Cidade, campo obrigatório.");
             return false;
         }
-        
+
         if (this.viewCliente.getCbEstado().getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Informe o Estado, campo obrigatório.");
             return false;
         }
 
         return true;
+    }
+
+    public List<Cliente> buscarTodos() {
+        Connection bd = ConnectionFactory.getConnection();
+        ClienteDAO dao = new ClienteDAO(bd);
+        try {
+            listaClientes = dao.buscarTodos();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaClientes;
     }
 
     public void listarClientes() {
